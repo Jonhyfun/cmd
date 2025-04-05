@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using cmd.Commands;
 using cmd.Runner.Arguments;
 
@@ -27,7 +28,7 @@ namespace cmd.Runner.Shells
             return new Commando(this);
         }
 
-        public virtual string Run(IRunOptions runOptions)
+        public virtual StreamReader Run(IRunOptions runOptions)
         {
             var process = new Process
                         {
@@ -42,7 +43,7 @@ namespace cmd.Runner.Shells
             PopulateEnvironment(process);
 
             process.Start();
-            var output = process.StandardOutput.ReadToEnd();
+            var output = process.StandardOutput;
             process.WaitForExit();
 
             return output;

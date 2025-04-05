@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using cmd.Commands;
 using cmd.Runner.Arguments;
 
@@ -6,7 +7,7 @@ namespace cmd.Runner.Shells
 {
     internal class Posh : IRunner
     {
-        public string Run(IRunOptions runOptions)
+        public StreamReader Run(IRunOptions runOptions)
         {
             return new ProcessRunner().Run(runOptions);
         }

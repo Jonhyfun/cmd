@@ -51,9 +51,12 @@ namespace cmd.Runner.Shells
 
         private void PopulateEnvironment(Process process)
         {
-            foreach (var variable in EnvironmentVariables)
+            if (EnvironmentVariables != null && EnvironmentVariables.Count != 0)
             {
-                process.StartInfo.EnvironmentVariables[variable.Key] = variable.Value;
+                foreach (var variable in EnvironmentVariables)
+                {
+                    process.StartInfo.EnvironmentVariables[variable.Key] = variable.Value;
+                }
             }
         }
     }
